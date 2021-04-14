@@ -1,0 +1,28 @@
+{
+    "name": "The-Expanse-RPG-Homegrown",
+    "title": "The Expanse RPG Homegrown Collection",
+    "description": "",
+    "author": "",
+    "version": 0.01,
+    "minimumCoreVersion": "0.7.9",
+    "compatibleCoreVersion": "0.7.9",
+    "esmodules": [
+        "startup.js"
+    ],
+    "styles": [
+        ""
+    ],
+    "packs": [
+
+    ],
+    "gridDistance": 2,
+    "gridUnits": "yd",
+    "primaryTokenAttribute": "health",
+    "secondaryTokenAttribute": "powerPoints",
+    "initiative": "3d6 + @initiative",
+
+
+    "url": "",
+    "manifest": "",
+    "download": ""
+}
