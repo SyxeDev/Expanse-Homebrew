@@ -9,7 +9,7 @@
             "webRoot": "${workspaceFolder}"
           },
     {
-        "command": "node \"A:\\Dev\\FoundryVTT\\node\\resources\\app\\main.js\" --dataPath=\"C:\\Users\\westo\\Documents\\Games\\FoundryVTT\"",
+        "command": "node \"A:\\Dev\\FoundryVTT\\node\\resources\\app\\main.js\" --dataPath=\"A:\\Dev\\FoundryVTT\\foundrydata\"",
         "name": "Launch Foundry Server",
         "request": "launch",
         "type": "node-terminal"
