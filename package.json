@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "expanse-homebrew",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "",
 	"scripts": {
 		"package": "gulp package",
@@ -9,7 +9,7 @@
 		"build:watch": "gulp watch",
 		"clean": "gulp clean && gulp link --clean",
 		"update": "npm install --save-dev gitlab:foundry-projects/foundry-pc/foundry-pc-types",
-		"publish": "gulp publish -u 0.0.1"
+		"publish": "gulp publish -u patch"
 	},
 	"author": "",
 	"license": "",
