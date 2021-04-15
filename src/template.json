@@ -5,6 +5,7 @@
   },
   "Item": {
     "types": [],
-    "templates": []
+    "templates": [],
+    "item": {}
   }
 }
