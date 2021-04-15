@@ -1,0 +1,18 @@
+ {
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:30000",
+            "webRoot": "${workspaceFolder}"
+          },
+    {
+        "command": "node \"A:\\Dev\\FoundryVTT\\node\\resources\\app\\main.js\" --dataPath=\"C:\\Users\\westo\\Documents\\Games\\FoundryVTT\"",
+        "name": "Launch Foundry Server",
+        "request": "launch",
+        "type": "node-terminal"
+      }
+    ]
+  }
