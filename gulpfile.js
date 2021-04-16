@@ -314,7 +314,7 @@ function updateDevEnv(cb) {
     const config = getConfig(),
       app = config.appPath,
       data = config.dataPath,
-      world = config.world.replace(" ", "-");
+      world = config.world;
     if (!config) cb(Error(chalk.red("foundryconfig.json not found")));
     if (!app) cb(Error(chalk.red("appPath not found in foundryconfig.json")));
     if (!data) cb(Error(chalk.red("dataPath not found in foundryconfig.json")));
@@ -345,7 +345,7 @@ function updateDevEnv(cb) {
     configSection.program = app;
     configSection.args = [];
     configSection.args.push("--dataPath=" + data);
-    if (world) configSection.args.push("--world=" + world);
+    if (world) configSection.args.push("--world=" + world.replace(" ", "-"));
     fs.writeJSONSync(launchPath, launchJson, {
       maxLength: 35,
       indent: "\t",
@@ -532,9 +532,10 @@ const execBuild = gulp.parallel(buildTS, buildLess, buildSASS, copyFiles);
 exports.build = gulp.series(clean, execBuild);
 exports.watch = buildWatch;
 exports.clean = clean;
-exports.link = gulp.series(linkUserData, updateDevEnv);
+exports.link = gulp.series(updateDevEnv, linkUserData);
 exports.package = packageBuild;
 exports.update = updateManifest;
+exports.debug = gulp.series(clean, execBuild, updateDevEnv, linkUserData);
 exports.publish = gulp.series(
   clean,
   updateManifest,
