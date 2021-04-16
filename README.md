@@ -6,6 +6,18 @@
 [![Foundry Hub Comments](https://img.shields.io/endpoint?logoColor=white&url=https%3A%2F%2Fwww.foundryvtt-hub.com%2Fwp-json%2Fhubapi%2Fv1%2Fpackage%2F_dev-mode%2Fshield%2Fcomments)](https://www.foundryvtt-hub.com/package/_dev-mode/)
 ![Foundry Core Compatible Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2FLeague-of-Foundry-Developers%2Ffoundryvtt-devMode%2Fmain%2Fsrc%2Fmodule.json&label=Foundry%20Version&query=$.compatibleCoreVersion&colorB=orange) -->
 
+## Setup Instructions
+
+1. Clone this repository into VSCode.
+2. Add file to root named 'foundryconfig.json':
+   {
+   "appPath": "{Full Path to Foundry VTT (Node)}/resources/app/main.js",
+   "dataPath": "{Full Path to Foundry VTT Data File}",
+   "world": "{Optional,Leave blank}",
+   "repository": "https://github.com/SyxeDev/Expanse-Homebrew",
+   "rawURL": "https://github.com/SyxeDev/Expanse-Homebrew"
+   }
+
 ## Acknowledgements
 
 Bootstrapped with Nick East's [create-foundry-project](https://gitlab.com/foundry-projects/foundry-pc/create-foundry-project).

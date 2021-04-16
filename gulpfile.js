@@ -313,8 +313,9 @@ function updateDevEnv(cb) {
     const package = fs.readJSONSync("package.json");
     const config = getConfig(),
       app = config.appPath,
-      data = config.dataPath,
-      world = config.world;
+      data = config.dataPath;
+    let world = "";
+    if (config.hasOwnProperty("world")) world = config.world;
     if (!config) cb(Error(chalk.red("foundryconfig.json not found")));
     if (!app) cb(Error(chalk.red("appPath not found in foundryconfig.json")));
     if (!data) cb(Error(chalk.red("dataPath not found in foundryconfig.json")));
@@ -345,7 +346,7 @@ function updateDevEnv(cb) {
     configSection.program = app;
     configSection.args = [];
     configSection.args.push("--dataPath=" + data);
-    if (world) configSection.args.push("--world=" + world.replace(" ", "-"));
+    if (world) configSection.args.push("--world=" + world);
     fs.writeJSONSync(launchPath, launchJson, {
       maxLength: 35,
       indent: "\t",
