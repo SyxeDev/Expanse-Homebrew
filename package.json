@@ -1,46 +1,86 @@
 {
-	"private": true,
-	"name": "expanse-homebrew",
-	"version": "0.0.4",
-	"author": "",
-	"license": "ISC",
-	"scripts": {
-		"package": "gulp package",
-		"publish": "gulp publish -u patch",
-		"build": "gulp build && gulp link",
-		"build:watch": "gulp watch",
-		"clean": "gulp clean && gulp link --clean",
-		"update": "npm install --save-dev gitlab:foundry-projects/foundry-pc/foundry-pc-types"
-	},
-	"devDependencies": {
-		"@league-of-foundry-developers/foundry-vtt-types": "^0.7.9-6",
-		"@typescript-eslint/eslint-plugin": "^4.22.0",
-		"@typescript-eslint/parser": "^4.22.0",
-		"archiver": "^5.3.0",
-		"chalk": "^4.1.0",
-		"ember-template-lint": "^3.2.0",
-		"eslint": "^7.24.0",
-		"foundry-pc-types": "gitlab:foundry-projects/foundry-pc/foundry-pc-types",
-		"fs-extra": "^9.1.0",
-		"gulp": "^4.0.2",
-		"gulp-git": "^2.10.1",
-		"gulp-less": "^4.0.1",
-		"gulp-sass": "^4.1.0",
-		"gulp-typescript": "^6.0.0-alpha.1",
-		"json-stringify-pretty-compact": "^3.0.0",
-		"sass": "^1.32.8",
-		"typescript": "^4.2.4",
-		"yargs": "^16.2.0"
-	},
-	"dependencies": {},
-	"main": "gulpfile.js",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/SyxeDev/The-Expanse-RPG-Homegrown.git"
-	},
-	"bugs": {
-		"url": "https://github.com/SyxeDev/The-Expanse-RPG-Homegrown/issues"
-	},
-	"homepage": "https://github.com/SyxeDev/The-Expanse-RPG-Homegrown#readme",
-	"description": ""
+  "private": true,
+  "name": "expanse-homebrew",
+  "version": "0.0.4",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "publish": "gulp publish -u patch",
+    "build": "gulp build && gulp link",
+    "package": "gulp package",
+    "build:watch": "gulp watch",
+    "clean": "gulp clean && gulp link --clean",
+    "update": "npm install --save-dev gitlab:foundry-projects/foundry-pc/foundry-pc-types"
+  },
+  "vsCode": {
+    "taskProfile": {
+      "version": "2.0.0",
+      "tasks": [
+        {
+          "type": "gulp",
+          "task": "build",
+          "group": "build",
+          "problemMatcher": [],
+          "label": "gulp: build"
+        }
+      ]
+    },
+    "launchProfile": {
+      "version": "0.2.0",
+      "configurations": [
+        {
+          "name": "FoundryVTT",
+          "preLaunchTask": "gulp: build",
+          "program": "leave empty",
+          "args": [
+            "leave empty"
+          ],
+          "request": "launch",
+          "skipFiles": [
+            "<node_internals>/**"
+          ],
+          "type": "pwa-node",
+          "outputCapture": "std",
+          "serverReadyAction": {
+            "pattern": "listening on port ([0-9]+)",
+            "uriFormat": "http://localhost:%s",
+            "action": "openExternally"
+          }
+        }
+      ]
+    }
+  },
+  "devDependencies": {
+    "@league-of-foundry-developers/foundry-vtt-types": "^0.7.9-6",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "archiver": "^5.3.0",
+    "chalk": "^4.1.0",
+    "ember-template-lint": "^3.2.0",
+    "eslint": "^7.24.0",
+    "foundry-pc-types": "gitlab:foundry-projects/foundry-pc/foundry-pc-types",
+    "fs-extra": "^9.1.0",
+    "gulp": "^4.0.2",
+    "gulp-git": "^2.10.1",
+    "gulp-less": "^4.0.1",
+    "gulp-sass": "^4.1.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "json-stringify-pretty-compact": "^3.0.0",
+    "sass": "^1.32.8",
+    "typescript": "^4.2.4",
+    "yargs": "^16.2.0"
+  },
+  "dependencies": {
+    "path-exists": "^4.0.0"
+  },
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SyxeDev/The-Expanse-RPG-Homegrown.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SyxeDev/The-Expanse-RPG-Homegrown/issues"
+  },
+  "homepage": "https://github.com/SyxeDev/The-Expanse-RPG-Homegrown#readme",
+  "description": ""
 }

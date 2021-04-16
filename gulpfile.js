@@ -129,7 +129,7 @@ const tsConfig = ts.createProject("tsconfig.json", {
 });
 
 /********************/
-/*		BUILD		*/
+/*	  	BUILD	     	*/
 /********************/
 
 /**
@@ -196,7 +196,7 @@ function buildWatch() {
 }
 
 /********************/
-/*		CLEAN		*/
+/*  		CLEAN 	  	*/
 /********************/
 
 /**
@@ -244,7 +244,7 @@ async function clean() {
 }
 
 /********************/
-/*		LINK		*/
+/*		   LINK   		*/
 /********************/
 
 /**
@@ -300,8 +300,64 @@ async function linkUserData() {
   }
 }
 
+/*****************************/
+/*      Dev Environment      */
+/*****************************/
+
+/**
+ * Create/Update launch.json file paths from values in foundryconfig.json
+ * Will also create settings.json and/or tasks.json if they don't exist
+ */
+function updateDevEnv(cb) {
+  try {
+    const package = fs.readJSONSync("package.json");
+    const config = getConfig(),
+      app = config.appPath,
+      data = config.dataPath,
+      world = config.world.replace(" ", "-");
+    if (!config) cb(Error(chalk.red("foundryconfig.json not found")));
+    if (!app) cb(Error(chalk.red("appPath not found in foundryconfig.json")));
+    if (!data) cb(Error(chalk.red("dataPath not found in foundryconfig.json")));
+
+    const vs = path.resolve(process.cwd(), ".vscode"),
+      launchPath = path.join(vs, "launch.json"),
+      taskPath = path.join(vs, "tasks.json");
+    if (!fs.existsSync(launchPath)) {
+      fs.createFileSync(launchPath);
+      fs.writeJSONSync(launchPath, package.vsCode.launchProfile);
+    }
+    if (!fs.existsSync(taskPath)) {
+      fs.createFileSync(taskPath);
+      fs.writeJSONSync(taskPath, package.vsCode.taskProfile);
+    }
+    const launchJson = fs.readJSONSync(".vscode/launch.json");
+    var configSection = launchJson.configurations.find(
+      (f) => f.name.toLowerCase() == "foundryvtt"
+    );
+    if (!configSection)
+      cb(
+        console.log(
+          chalk.yellow(
+            "launch.json does not define a configuration with name 'FoundryVTT'."
+          )
+        )
+      );
+    configSection.program = app;
+    configSection.args = [];
+    configSection.args.push("--dataPath=" + data);
+    if (world) configSection.args.push("--world=" + world);
+    fs.writeJSONSync(launchPath, launchJson, {
+      maxLength: 35,
+      indent: "\t",
+    });
+    return cb();
+  } catch (err) {
+    cb(err);
+  }
+}
+
 /*********************/
-/*		PACKAGE		 */
+/*	  	PACKAGE		   */
 /*********************/
 
 /**
@@ -348,10 +404,6 @@ async function packageBuild() {
     }
   });
 }
-
-/*********************/
-/*		PACKAGE		 */
-/*********************/
 
 /**
  * Update version and URLs in the manifest JSON
@@ -433,15 +485,13 @@ function updateManifest(cb) {
     manifest.file.manifest = `${rawURL}/master/${manifestRoot}/${manifest.name}`;
     manifest.file.download = result;
 
-    const prettyProjectJson = stringify(manifest.file, {
-      maxLength: 35,
-      indent: "\t",
-    });
-
     fs.writeJSONSync("package.json", packageJson, { spaces: "\t" });
     fs.writeFileSync(
       path.join(manifest.root, manifest.name),
-      prettyProjectJson,
+      {
+        maxLength: 35,
+        indent: "\t",
+      },
       "utf8"
     );
 
@@ -482,7 +532,7 @@ const execBuild = gulp.parallel(buildTS, buildLess, buildSASS, copyFiles);
 exports.build = gulp.series(clean, execBuild);
 exports.watch = buildWatch;
 exports.clean = clean;
-exports.link = linkUserData;
+exports.link = gulp.series(linkUserData, updateDevEnv);
 exports.package = packageBuild;
 exports.update = updateManifest;
 exports.publish = gulp.series(

@@ -1,37 +1,36 @@
 {
-	"name": "ExpanseHomebrew",
-	"title": "ExpanseHomebrew",
-	"description": "",
-	"version": "0.0.4",
-	"author": "",
-	"authors": [
-		{
-			"name": "",
-			"email": "",
-			"url": ""
-		}
-	],
-	"scripts": [],
-	"esmodules": [
-		"ExpanseHomebrew.js"
-	],
-	"styles": ["ExpanseHomebrew.css"],
-	"packs": [],
-	"languages": [
-		{
-			"name": "English",
-			"path": "./lang/en.js"
-		}
-	],
-	"gridDistance": 1,
-	"gridUnits": "",
-	"minimumCoreVersion": "0.5.0",
-	"compatibleCoreVersion": "0.5.0",
-	"url": "https://github.com/SyxeDev/Expanse-Homebrew",
-	"manifest": "https://github.com/SyxeDev/Expanse-Homebrew/master/src/system.json",
-	"download": "https://github.com/SyxeDev/Expanse-Homebrew/v0.0.4/package/ExpanseHomebrew-v0.0.4.zip",
-	"license": "",
-	"readme": "",
-	"bugs": "",
-	"changelog": ""
+  "name": "ExpanseHomebrew",
+  "title": "ExpanseHomebrew",
+  "description": "",
+  "version": "0.0.4",
+  "author": "",
+  "authors": [
+    {
+      "name": "",
+      "email": "",
+      "url": ""
+    }
+  ],
+  "scripts": [],
+  "esmodules": ["ExpanseHomebrew.js"],
+  "styles": ["ExpanseHomebrew.css"],
+  "packs": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "./lang/en.json"
+    }
+  ],
+  "gridDistance": 1,
+  "gridUnits": "",
+  "minimumCoreVersion": "0.5.0",
+  "compatibleCoreVersion": "0.5.0",
+  "url": "https://github.com/SyxeDev/Expanse-Homebrew",
+  "manifest": "https://github.com/SyxeDev/Expanse-Homebrew/master/src/system.json",
+  "download": "https://github.com/SyxeDev/Expanse-Homebrew/v0.0.4/package/ExpanseHomebrew-v0.0.4.zip",
+  "license": "",
+  "readme": "",
+  "bugs": "",
+  "changelog": ""
 }
